@@ -1,6 +1,8 @@
 import { DOMelements, gameOptions } from "./config.js";
 import { updateHeaders } from "./dom.js";
 
+let isMouseDown = false;
+
 export function updateBoardSize() {
   document.documentElement.style.setProperty(
     "--board-width",
@@ -104,9 +106,31 @@ function renderBoard(boardElement, board) {
         start = false;
       }
 
-      div.addEventListener("click", () => {
+      div.addEventListener("mouseup", () => {
         revealCell(board, row, col, div);
         checkWin(board);
+        isMouseDown = false;
+      });
+
+      /* this one is so it recognizes if you stop clicking
+       outside from the board */
+      document.addEventListener("mouseup", () => {
+        isMouseDown = false;
+      });
+
+      div.addEventListener("mousedown", () => {
+        div.classList.add("pressed");
+        isMouseDown = true;
+      });
+
+      div.addEventListener("mouseleave", () => {
+        div.classList.remove("pressed");
+      });
+
+      div.addEventListener("mouseenter", () => {
+        if (isMouseDown) {
+          div.classList.add("pressed");
+        }
       });
 
       div.addEventListener("contextmenu", (e) => {
@@ -133,8 +157,7 @@ function revealCell(board, row, col, cellElement) {
 
   if (board[row][col].mine) {
     cellElement.classList.add("mine");
-
-    alert("You LOST!");
+    revealAllMines(board);
   } else {
     cellElement.classList.add("revealed");
     const neighborMines = board[row][col].neighborMines;
@@ -182,11 +205,9 @@ function flagCell(board, row, col, cellElement) {
   if (board[row][col].flagged) {
     board[row][col].flagged = false;
     cellElement.classList.remove("flagged");
-    cellElement.innerText = "";
   } else {
     board[row][col].flagged = true;
     cellElement.classList.add("flagged");
-    cellElement.innerText = "🚩";
   }
 }
 
@@ -200,4 +221,17 @@ function checkWin(board) {
   }
   alert("You WON!");
   return true;
+}
+
+function revealAllMines(board) {
+  for (let row = 0; row < gameOptions.height; row++) {
+    for (let col = 0; col < gameOptions.width; col++) {
+      if (board[row][col].mine) {
+        const cellElement = document.querySelector(
+          `.cell[data-row='${row}'][data-col='${col}']`
+        );
+        cellElement.classList.add("mine2");
+      }
+    }
+  }
 }
