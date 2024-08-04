@@ -70,6 +70,7 @@ function calculateNeighbors(board) {
       if (board[row][col].mine) continue;
 
       let mineCount = 0;
+      let flagCount = 0;
       for (const [dx, dy] of directions) {
         const newRow = row + dx;
         const newCol = col + dy;
@@ -82,9 +83,13 @@ function calculateNeighbors(board) {
           if (board[newRow][newCol].mine) {
             mineCount++;
           }
+          if (board[newRow][newCol].flagged) {
+            flagCount++;
+          }
         }
       }
       board[row][col].neighborMines = mineCount;
+      board[row][col].neightborFlags = flagCount;
     }
   }
 }
@@ -106,7 +111,22 @@ function renderBoard(boardElement, board) {
         start = false;
       }
 
-      div.addEventListener("mouseup", () => {
+      div.addEventListener("mouseup", (e) => {
+        // only reveal cell for left mouse button
+        if (e.button !== 0) return;
+
+        // reveal only if number of mines is flagged
+        calculateNeighbors(board);
+        if (
+          div.classList.contains("revealed") &&
+          board[row][col].neightborFlags == board[row][col].neighborMines
+        ) {
+          revealNeighbors(board, row, col);
+          isMouseDown = false;
+
+          return;
+        }
+
         revealCell(board, row, col, div);
         checkWin(board);
         isMouseDown = false;
@@ -118,7 +138,9 @@ function renderBoard(boardElement, board) {
         isMouseDown = false;
       });
 
-      div.addEventListener("mousedown", () => {
+      div.addEventListener("mousedown", (e) => {
+        if (e.button !== 0) return;
+
         div.classList.add("pressed");
         isMouseDown = true;
       });
@@ -133,7 +155,9 @@ function renderBoard(boardElement, board) {
         }
       });
 
-      div.addEventListener("contextmenu", (e) => {
+      div.addEventListener("mousedown", (e) => {
+        if (e.button !== 2) return;
+
         e.preventDefault();
         flagCell(board, row, col, div);
 
@@ -219,7 +243,7 @@ function checkWin(board) {
       }
     }
   }
-  alert("You WON!");
+  flagAllMines(board);
   return true;
 }
 
@@ -231,6 +255,19 @@ function revealAllMines(board) {
           `.cell[data-row='${row}'][data-col='${col}']`
         );
         cellElement.classList.add("mine2");
+      }
+    }
+  }
+}
+
+function flagAllMines(board) {
+  for (let row = 0; row < gameOptions.height; row++) {
+    for (let col = 0; col < gameOptions.width; col++) {
+      if (board[row][col].mine) {
+        const cellElement = document.querySelector(
+          `.cell[data-row='${row}'][data-col='${col}']`
+        );
+        cellElement.classList.add("flagged");
       }
     }
   }

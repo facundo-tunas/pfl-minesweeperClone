@@ -10,8 +10,6 @@ export const DOMelements = {
   heightDisplay: document.querySelector(".height"),
   minesDisplay: document.querySelector(".minecount"),
   startButton: document.querySelector(".start-game"),
-  setWidthButton: document.querySelector(".set-width"),
-  setHeightButton: document.querySelector(".set-height"),
-  setMinesButton: document.querySelector(".set-mines"),
+  setNewSettings: document.querySelector(".set-settings"),
   board: document.querySelector(".board"),
 };

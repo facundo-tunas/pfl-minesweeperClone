@@ -1,4 +1,5 @@
 .board {
+  margin: auto;
   display: grid;
   grid-template-columns: repeat(var(--board-width), var(--cell-size));
   grid-template-rows: repeat(var(--board-height), var(--cell-size));
