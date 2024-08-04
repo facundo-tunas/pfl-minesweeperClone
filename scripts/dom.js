@@ -2,7 +2,8 @@ import { gameOptions, DOMelements } from "./config.js";
 import { generateGame, updateBoardSize } from "./game.js";
 
 export function updateHeaders() {
-  DOMelements.minesDisplay.textContent = "Mine Count: " + gameOptions.mineCount;
+  DOMelements.minesDisplay.textContent =
+    gameOptions.mineCount - gameOptions.flags;
   DOMelements.widthDisplay.textContent = "Width: " + gameOptions.width;
   DOMelements.heightDisplay.textContent = "Height: " + gameOptions.height;
 }
@@ -11,6 +12,7 @@ export function initializeEventListeners() {
   generateGame(DOMelements.board);
 
   DOMelements.startButton.addEventListener("click", () => {
+    gameOptions.flags = 0;
     generateGame(DOMelements.board);
   });
 

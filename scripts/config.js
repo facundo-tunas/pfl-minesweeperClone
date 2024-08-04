@@ -2,6 +2,7 @@ export const gameOptions = {
   width: 16,
   height: 16,
   mineCount: 40,
+  flags: 0,
 };
 
 export const DOMelements = {

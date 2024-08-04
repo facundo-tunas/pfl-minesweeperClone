@@ -1,5 +1,5 @@
-import { gameOptions } from './config.js';
-import { updateHeaders } from './dom.js';
+import { DOMelements, gameOptions } from "./config.js";
+import { updateHeaders } from "./dom.js";
 
 export function updateBoardSize() {
   document.documentElement.style.setProperty(
@@ -112,6 +112,14 @@ function renderBoard(boardElement, board) {
       div.addEventListener("contextmenu", (e) => {
         e.preventDefault();
         flagCell(board, row, col, div);
+
+        gameOptions.flags++;
+        updateHeaders();
+      });
+
+      // this is so you cant accidentally right click in the gaps
+      DOMelements.board.addEventListener("contextmenu", (e) => {
+        e.preventDefault();
       });
 
       boardElement.appendChild(div);
@@ -125,12 +133,13 @@ function revealCell(board, row, col, cellElement) {
 
   if (board[row][col].mine) {
     cellElement.classList.add("mine");
-    cellElement.innerText = "💣";
 
     alert("You LOST!");
   } else {
     cellElement.classList.add("revealed");
     const neighborMines = board[row][col].neighborMines;
+    cellElement.classList.add(`n${neighborMines}`);
+
     cellElement.innerText = neighborMines > 0 ? neighborMines : "";
     if (neighborMines === 0) {
       revealNeighbors(board, row, col);

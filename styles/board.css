@@ -6,27 +6,23 @@
   max-height: calc(var(--cell-size) * var(--board-height));
 }
 
-.cell {
-  background-color: #303030;
-  color: #fff;
 
-  width: var(--cell-size);
-  height: var(--cell-size);
-  border: 1px solid #fff;
+/* displays */
 
+.displays {
   display: flex;
-  align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
-  cursor: pointer;
+  align-items: center;
 
-  user-select: none;
+  border-radius: 5px 5px 0 0;
+  background-color: #303030;
 }
 
-.cell.revealed {
-  background-color: #505050;
+.displays p {
+  color: #fff;
+  padding: 0.5rem;
 }
 
-.cell.mine {
-  background-color: red;
+.minecount {
+  margin-left: auto;
 }

@@ -1,0 +1,62 @@
+/* roboto-regular - latin */
+@font-face {
+  font-display: auto; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'minesweeper';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../mine-sweeper.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5+, IE 9+, Safari 3.1+, iOS 4.2+, Android Browser 2.2+ */
+}
+
+.cell {
+  background-color: #303030;
+  color: #fff;
+
+  font-family: minesweeper;
+  font-size: 1.2rem;
+
+  width: var(--cell-size);
+  height: var(--cell-size);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  background-image: url("../Untitled.png");
+  background-size: cover;
+
+}
+
+.cell.revealed {
+  background-color: #505050;
+  background-image: url("../1.png");
+}
+.cell.mine {
+  background-color: red;
+  background-image: url("../2.png");
+}
+
+.cell.n1 {
+  color: blue;
+}
+.cell.n2 {
+  color: green;
+}
+.cell.n3 {
+  color: red;
+}
+.cell.n4 {
+  color: darkblue;
+}
+.cell.n5 {
+  color: darkred;
+}
+.cell.n6 {
+  color: lightblue;
+}
+.cell.n7 {
+  color: black;
+}
+.cell.n8 {
+  color: gray;
+}
