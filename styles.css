@@ -40,8 +40,5 @@ body {
 
 .cell.mine {
   background-color: red;
-  color: white;
 }
-.cell.flagged {
-  background-color: blue;
-}
+

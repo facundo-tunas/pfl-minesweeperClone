@@ -88,12 +88,21 @@ function calculateNeighbors(board) {
 }
 
 function renderBoard(boardElement, board) {
+  let start = true;
+
   for (let row = 0; row < gameOptions.height; row++) {
     for (let col = 0; col < gameOptions.width; col++) {
       const div = document.createElement("div");
       div.classList.add("cell");
       div.dataset.row = row;
       div.dataset.col = col;
+
+      // mark safe spot to start game
+      const cell = board[row][col];
+      if (start && !cell.neighborMines && !cell.mine) {
+        div.innerText = "❎";
+        start = false;
+      }
 
       div.addEventListener("click", () => {
         revealCell(board, row, col, div);
