@@ -1,9 +1,47 @@
+:root {
+  --cell-size: 32px;
+  --board-size: 16;
+}
+
 body {
   width: 100vw;
   height: 100vh;
-
   font-family: sans-serif;
   display: grid;
   place-content: center;
 }
 
+.board {
+  display: grid;
+  grid-template-columns: repeat(var(--board-size), var(--cell-size));
+  max-width: calc(var(--cell-size) * var(--board-size));
+}
+
+.cell {
+  background-color: #303030;
+  color: #fff;
+
+  width: var(--cell-size);
+  height: var(--cell-size);
+  border: 1px solid #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+
+  user-select: none;
+}
+
+.cell.revealed {
+  background-color: #505050;
+}
+
+.cell.mine {
+  background-color: red;
+  color: white;
+}
+.cell.flagged {
+  background-color: blue;
+}
