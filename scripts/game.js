@@ -1,22 +1,22 @@
-const gameOptions = {
-  width: 16,
-  height: 16,
-  mineCount: 40,
-};
+import { gameOptions } from './config.js';
+import { updateHeaders } from './dom.js';
 
-document.addEventListener("DOMContentLoaded", () => {
-  const button = document.querySelector(".start-game");
-  const board = document.querySelector(".board");
+export function updateBoardSize() {
+  document.documentElement.style.setProperty(
+    "--board-width",
+    gameOptions.width
+  );
+  document.documentElement.style.setProperty(
+    "--board-height",
+    gameOptions.height
+  );
+}
 
-  button.addEventListener("click", () => {
-    generateGame(board);
-  });
-});
-
-function generateGame(board) {
+export function generateGame(board) {
   board.innerHTML = "";
   const gameBoard = generateBoard();
-  console.log(gameBoard);
+
+  updateHeaders();
   placeMines(gameBoard);
   calculateNeighbors(gameBoard);
   renderBoard(board, gameBoard);

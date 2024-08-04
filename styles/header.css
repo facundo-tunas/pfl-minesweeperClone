@@ -1,0 +1,14 @@
+header {
+  padding: 0rem 2rem;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+}
+
+header p {
+  background-color: #303030;
+  color: #fff;
+  padding: 0.5rem;
+  border-radius: 5px;
+}

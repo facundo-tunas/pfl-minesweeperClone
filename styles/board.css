@@ -1,20 +1,9 @@
-:root {
-  --cell-size: 32px;
-  --board-size: 16;
-}
-
-body {
-  width: 100vw;
-  height: 100vh;
-  font-family: sans-serif;
-  display: grid;
-  place-content: center;
-}
-
 .board {
   display: grid;
-  grid-template-columns: repeat(var(--board-size), var(--cell-size));
-  max-width: calc(var(--cell-size) * var(--board-size));
+  grid-template-columns: repeat(var(--board-width), var(--cell-size));
+  grid-template-rows: repeat(var(--board-height), var(--cell-size));
+  max-width: calc(var(--cell-size) * var(--board-width));
+  max-height: calc(var(--cell-size) * var(--board-height));
 }
 
 .cell {
@@ -41,4 +30,3 @@ body {
 .cell.mine {
   background-color: red;
 }
-

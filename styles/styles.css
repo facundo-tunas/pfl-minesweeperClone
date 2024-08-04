@@ -1,0 +1,34 @@
+:root {
+  --cell-size: 32px;
+  --board-width: 16;
+  --board-height: 16;
+}
+
+body {
+  min-width: 100vw;
+  min-height: 100vh;
+  font-family: sans-serif;
+  
+  display: grid;
+  grid-template-areas:
+    "header"
+    "content";
+  grid-template-rows: 100px auto;
+}
+
+.game-container {
+  justify-self: center;
+  min-height: calc(100vh - 100px);
+
+  display: grid;
+  grid-template-rows: min-content 1fr;
+  gap: 2rem;
+  place-content: start center;
+
+  padding: 2rem;
+
+}
+
+.buttons {
+  margin: auto;
+}
