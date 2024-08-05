@@ -1,12 +1,3 @@
-/* roboto-regular - latin */
-@font-face {
-  font-display: auto; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-  font-family: "minesweeper";
-  font-style: normal;
-  font-weight: 400;
-  src: url("../mine-sweeper.ttf") format("truetype"); /* Chrome 4+, Firefox 3.5+, IE 9+, Safari 3.1+, iOS 4.2+, Android Browser 2.2+ */
-}
-
 .cell {
   color: #fff;
 

@@ -2,10 +2,11 @@ import { gameOptions, DOMelements } from "./config.js";
 import { generateGame, updateBoardSize } from "./game.js";
 
 export function updateHeaders() {
-  DOMelements.minesDisplay.textContent =
-    gameOptions.mineCount - gameOptions.flags;
-  DOMelements.widthDisplay.textContent = "Width: " + gameOptions.width;
-  DOMelements.heightDisplay.textContent = "Height: " + gameOptions.height;
+  DOMelements.minesDisplay.textContent = (
+    gameOptions.mineCount - gameOptions.flags
+  )
+    .toString()
+    .padStart(3, "0");
 }
 
 export function initializeEventListeners() {
@@ -40,7 +41,7 @@ export function initializeEventListeners() {
       validateMineCount();
       generateGame(DOMelements.board);
     } else {
-      alert('Invalid Input')
+      alert("Invalid Input");
     }
   });
 }

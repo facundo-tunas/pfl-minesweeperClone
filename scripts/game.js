@@ -160,8 +160,6 @@ function renderBoard(boardElement, board) {
 
         e.preventDefault();
         flagCell(board, row, col, div);
-
-        gameOptions.flags++;
         updateHeaders();
       });
 
@@ -229,9 +227,13 @@ function flagCell(board, row, col, cellElement) {
   if (board[row][col].flagged) {
     board[row][col].flagged = false;
     cellElement.classList.remove("flagged");
+    gameOptions.flags--;
+
   } else {
     board[row][col].flagged = true;
     cellElement.classList.add("flagged");
+    gameOptions.flags++;
+
   }
 }
 
@@ -243,6 +245,8 @@ function checkWin(board) {
       }
     }
   }
+  gameOptions.flags = gameOptions.mineCount;
+  updateHeaders();
   flagAllMines(board);
   return true;
 }

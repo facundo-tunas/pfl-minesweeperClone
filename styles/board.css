@@ -3,10 +3,12 @@
   display: grid;
   grid-template-columns: repeat(var(--board-width), var(--cell-size));
   grid-template-rows: repeat(var(--board-height), var(--cell-size));
-  max-width: calc(var(--cell-size) * var(--board-width));
-  max-height: calc(var(--cell-size) * var(--board-height));
-}
+  max-width: calc(var(--cell-size) * var(--board-width) + 2rem);
+  max-height: calc(var(--cell-size) * var(--board-height) + 2rem);
 
+  padding: 1rem;
+  background-color: red;
+}
 
 /* displays */
 
@@ -16,14 +18,21 @@
   align-items: center;
 
   border-radius: 5px 5px 0 0;
+  padding: 1rem;
   background-color: #303030;
 }
 
 .displays p {
-  color: #fff;
-  padding: 0.5rem;
+  font-family: 'Digital';
+  font-size: 4rem;
+  letter-spacing: 1px;
+  color: red;
+  background-color: black;
+  text-align: center;
+  padding: 4px 8px 0 12px;
+  line-height: 1em;
 }
 
 .minecount {
-  margin-left: auto;
+  margin-right: auto;
 }
