@@ -1,14 +1,13 @@
-
 body {
   min-width: 100vw;
   min-height: 100vh;
-  font-family: sans-serif;
+  font-family: roboto, sans-serif;
 
   display: grid;
   grid-template-areas:
     "header"
     "content";
-  grid-template-rows: 100px auto;
+  grid-template-rows: min-content auto;
 
   background-color: var(--page-bg);
 }
@@ -26,5 +25,4 @@ body {
 
   user-select: none;
 }
-
 

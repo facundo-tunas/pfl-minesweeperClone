@@ -11,6 +11,8 @@ export const DOMelements = {
   timerDisplay: document.querySelector(".timer"),
   minesDisplay: document.querySelector(".minecount"),
   startButton: document.querySelector(".start-game"),
-  setNewSettings: document.querySelector(".set-settings"),
   board: document.querySelector(".board"),
+  settingsModal: document.querySelector(".settings-modal"),
+  closeSettingsButton: document.querySelector(".close-settings"),
+  settingsButton: document.querySelector(".open-settings"),
 };

@@ -24,6 +24,32 @@ export function generateGame(board) {
   renderBoard(board, gameBoard);
 }
 
+export function setDifficulty(level) {
+  switch (level) {
+    case "beginner":
+      gameOptions.width = 8;
+      gameOptions.height = 8;
+      gameOptions.mineCount = 10;
+      break;
+    case "intermediate":
+      gameOptions.width = 16;
+      gameOptions.height = 16;
+      gameOptions.mineCount = 40;
+      break;
+    case "advanced":
+      gameOptions.width = 30;
+      gameOptions.height = 16;
+      gameOptions.mineCount = 99;
+      break;
+    default:
+      gameOptions.width = 16;
+      gameOptions.height = 16;
+      gameOptions.mineCount = 40;
+  }
+  updateBoardSize()
+  console.log(`Difficulty set to ${level}: ${gameOptions.width}x${gameOptions.height}, ${gameOptions.mineCount} mines`);
+}
+
 function generateBoard() {
   const board = [];
   for (let i = 0; i < gameOptions.height; i++) {

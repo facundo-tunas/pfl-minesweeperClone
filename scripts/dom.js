@@ -1,5 +1,5 @@
 import { gameOptions, DOMelements } from "./config.js";
-import { generateGame, updateBoardSize } from "./game.js";
+import { generateGame, setDifficulty } from "./game.js";
 import { endTimer } from "./timer.js";
 
 export function updateHeaders() {
@@ -28,6 +28,26 @@ export function updateHeaders() {
 export function initializeEventListeners() {
   generateGame(DOMelements.board);
 
+  DOMelements.settingsButton.addEventListener("click", () => {
+    DOMelements.settingsModal.style.display = "block";
+  });
+
+  DOMelements.closeSettingsButton.addEventListener("click", () => {
+    DOMelements.settingsModal.display = "none";
+  });
+
+  const difficultyOptions = document.querySelectorAll(".settings-modal li");
+  difficultyOptions.forEach((option) => {
+    option.addEventListener("click", () => {
+      setDifficulty(option.dataset.difficulty);
+      DOMelements.settingsModal.style.display = "none";
+      
+      endTimer();
+      updateHeaders();
+      generateGame(DOMelements.board);
+    });
+  });
+
   DOMelements.startButton.addEventListener("click", () => {
     gameOptions.flags = 0;
     gameOptions.gameState = 0;
@@ -35,34 +55,6 @@ export function initializeEventListeners() {
     endTimer();
     updateHeaders();
     generateGame(DOMelements.board);
-  });
-
-  DOMelements.setNewSettings.addEventListener("click", () => {
-    const newMines = prompt("Enter new mine count:");
-    const newWidth = prompt("Enter new width (min 9):");
-    const newHeight = prompt("Enter new height (min 9):");
-
-    if (
-      newHeight &&
-      !isNaN(newHeight) &&
-      newHeight > 8 &&
-      newWidth &&
-      !isNaN(newWidth) &&
-      newWidth > 8 &&
-      newMines &&
-      !isNaN(newMines) &&
-      newMines > 0
-    ) {
-      gameOptions.mineCount = parseInt(newMines);
-      gameOptions.width = parseInt(newWidth);
-      gameOptions.height = parseInt(newHeight);
-
-      updateBoardSize();
-      validateMineCount();
-      generateGame(DOMelements.board);
-    } else {
-      alert("Invalid Input");
-    }
   });
 }
 

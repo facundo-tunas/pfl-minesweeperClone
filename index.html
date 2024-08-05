@@ -8,22 +8,33 @@
     <link rel="stylesheet" href="/styles/reset.css" />
     <link rel="stylesheet" href="./styles/fonts.css" />
     <link rel="stylesheet" href="./styles/variables.css" />
+    <link rel="stylesheet" href="./styles/header.css" />
     <link rel="stylesheet" href="/styles/styles.css" />
-
+    <link rel="stylesheet" href="./styles/settings.css"/>
     <link rel="stylesheet" href="./styles/board.css" />
     <link rel="stylesheet" href="./styles/cells.css" />
-    <link rel="stylesheet" href="./styles/header.css" />
 
     <script type="module" src="./scripts/main.js" defer></script>
   </head>
   <body>
     <header class="buttons">
-      <button class="start-game">Start Game</button>
-      <button class="set-settings">Set Settings</button>
+      <button class="open-settings">Settings</button>
     </header>
+    <div class="settings-modal">
+      <div class="container">
+        <p class="options-title">Difficulty</p>
+        <ul>
+          <li data-difficulty="beginner">Beginner</li>
+          <li data-difficulty="intermediate">Intermediate</li>
+          <li data-difficulty="advanced">Advanced</li>
+        </ul>
+        <button class="close-settings">Close</button>
+      </div>
+    </div>
     <div class="game-container">
       <div class="displays">
         <p class="minecount"></p>
+        <button class="start-game">😍</button>
         <p class="timer">000</p>
       </div>
       <div class="board"></div>
