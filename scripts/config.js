@@ -8,6 +8,7 @@ export const gameOptions = {
 };
 
 export const DOMelements = {
+  timerHeader: document.querySelector(".timer-header"),
   timerDisplay: document.querySelector(".timer"),
   minesDisplay: document.querySelector(".minecount"),
   startButton: document.querySelector(".start-game"),

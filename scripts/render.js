@@ -14,6 +14,29 @@ export function renderBoard(boardElement, board) {
   let isMouseDown = false;
   let pressedNeighbours = false;
 
+  document.addEventListener("keydown", (e) => {
+    if (gameOptions.gameState > 1) return;
+
+    const hoveredCell = document.querySelector(".hovered");
+    if ((e.key !== "g" && e.key !== " ") || !hoveredCell) return;
+    
+    e.preventDefault();
+    const hoveredCol = +hoveredCell.dataset.col;
+    const hoveredRow = +hoveredCell.dataset.row;
+    calculateNeighbors(board);
+    if (
+      hoveredCell.classList.contains("revealed") &&
+      board[hoveredRow][hoveredCol].neightborFlags ==
+        board[hoveredRow][hoveredCol].neighborMines
+    ) {
+      revealNeighbors(board, hoveredRow, hoveredCol);
+      return;
+    }
+
+    flagCell(board, hoveredRow, hoveredCol, hoveredCell);
+    updateHeaders();
+  });
+
   for (let row = 0; row < gameOptions.height; row++) {
     for (let col = 0; col < gameOptions.width; col++) {
       const div = document.createElement("div");
@@ -34,6 +57,7 @@ export function renderBoard(boardElement, board) {
 
         // reveal only if number of mines is flagged
         calculateNeighbors(board);
+
         if (
           div.classList.contains("revealed") &&
           board[row][col].neightborFlags == board[row][col].neighborMines
@@ -82,6 +106,7 @@ export function renderBoard(boardElement, board) {
 
       div.addEventListener("mouseleave", () => {
         div.classList.remove("pressed");
+        div.classList.remove("hovered");
 
         if (pressedNeighbours) {
           unpressCells();
@@ -100,6 +125,7 @@ export function renderBoard(boardElement, board) {
             pressedNeighbours = false;
           }
         }
+        div.classList.add("hovered");
       });
 
       div.addEventListener("mousedown", (e) => {

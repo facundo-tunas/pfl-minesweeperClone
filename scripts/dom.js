@@ -33,7 +33,7 @@ export function initializeEventListeners() {
   });
 
   DOMelements.closeSettingsButton.addEventListener("click", () => {
-    DOMelements.settingsModal.display = "none";
+    DOMelements.settingsModal.style.display = "none";
   });
 
   const difficultyOptions = document.querySelectorAll(".settings-modal li");
@@ -41,7 +41,7 @@ export function initializeEventListeners() {
     option.addEventListener("click", () => {
       setDifficulty(option.dataset.difficulty);
       DOMelements.settingsModal.style.display = "none";
-      
+
       endTimer();
       updateHeaders();
       generateGame(DOMelements.board);

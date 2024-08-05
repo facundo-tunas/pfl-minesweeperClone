@@ -46,8 +46,10 @@ export function setDifficulty(level) {
       gameOptions.height = 16;
       gameOptions.mineCount = 40;
   }
-  updateBoardSize()
-  console.log(`Difficulty set to ${level}: ${gameOptions.width}x${gameOptions.height}, ${gameOptions.mineCount} mines`);
+  updateBoardSize();
+  console.log(
+    `Difficulty set to ${level}: ${gameOptions.width}x${gameOptions.height}, ${gameOptions.mineCount} mines`
+  );
 }
 
 function generateBoard() {
@@ -60,6 +62,7 @@ function generateBoard() {
         neighborMines: 0,
         revealed: false,
         flagged: false,
+        neightborFlags: null,
       });
     }
     board.push(row);
@@ -163,11 +166,11 @@ export function revealNeighbors(board, row, col) {
       const cellElement = document.querySelector(
         `.cell[data-row='${newRow}'][data-col='${newCol}']`
       );
+
       revealCell(board, newRow, newCol, cellElement);
     }
   }
 }
-
 
 export function flagCell(board, row, col, cellElement) {
   if (board[row][col].revealed) return;

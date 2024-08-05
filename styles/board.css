@@ -28,7 +28,7 @@
 }
 .displays p {
   font-family: "Digital";
-  font-size: 4rem;
+  font-size: 3.1rem;
   letter-spacing: 1px;
   color: var(--display-text);
   background-color: var(--display-bg);
