@@ -76,3 +76,44 @@ function validateMineCount() {
     );
   }
 }
+
+export function unpressCells() {
+  const pressed = document.querySelectorAll(".pressed");
+
+  pressed.forEach((element) => {
+    element.classList.remove("pressed");
+  });
+}
+
+export function pressNeighbours(row, col) {
+  const directions = [
+    [-1, -1],
+    [-1, 0],
+    [-1, 1],
+    [0, -1],
+    [0, 1],
+    [1, -1],
+    [1, 0],
+    [1, 1],
+  ];
+
+  for (const [dx, dy] of directions) {
+    const newRow = row + dx;
+    const newCol = col + dy;
+    if (
+      newRow >= 0 &&
+      newRow < gameOptions.height &&
+      newCol >= 0 &&
+      newCol < gameOptions.width
+    ) {
+      const cellElement = document.querySelector(
+        `.cell[data-row='${newRow}'][data-col='${newCol}']`
+      );
+      pressCell(cellElement);
+      console.log("Xd");
+    }
+  }
+}
+function pressCell(cellElement) {
+  cellElement.classList.add("pressed");
+}

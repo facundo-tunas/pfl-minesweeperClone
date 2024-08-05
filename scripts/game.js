@@ -1,7 +1,7 @@
 import { DOMelements, gameOptions } from "./config.js";
 import { updateHeaders } from "./dom.js";
 import { endTimer, startTimer } from "./timer.js";
-import { renderBoard } from "./generate.js";
+import { renderBoard } from "./render.js";
 
 export function updateBoardSize() {
   document.documentElement.style.setProperty(
@@ -113,7 +113,7 @@ export function revealCell(board, row, col, cellElement) {
   }
 }
 
-function revealNeighbors(board, row, col) {
+export function revealNeighbors(board, row, col) {
   const directions = [
     [-1, -1],
     [-1, 0],
@@ -141,6 +141,7 @@ function revealNeighbors(board, row, col) {
     }
   }
 }
+
 
 export function flagCell(board, row, col, cellElement) {
   if (board[row][col].revealed) return;
