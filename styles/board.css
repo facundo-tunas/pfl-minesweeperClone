@@ -7,7 +7,8 @@
   max-height: calc(var(--cell-size) * var(--board-height) + 2rem);
 
   padding: 1rem;
-  background-color: red;
+  background-color: var(--board-bg);
+  border-radius: 0px 0px 5px 5px;
 }
 
 /* displays */
@@ -19,15 +20,18 @@
 
   border-radius: 5px 5px 0 0;
   padding: 1rem;
-  background-color: #303030;
-}
+  background-color: var(--board-bg);
 
+  border-bottom: 10px solid var(--board-divider);
+
+  transition: 0.3s border ease-in;
+}
 .displays p {
-  font-family: 'Digital';
+  font-family: "Digital";
   font-size: 4rem;
   letter-spacing: 1px;
-  color: red;
-  background-color: black;
+  color: var(--display-text);
+  background-color: var(--display-bg);
   text-align: center;
   padding: 4px 8px 0 12px;
   line-height: 1em;

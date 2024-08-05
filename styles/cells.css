@@ -32,26 +32,26 @@
 }
 
 .cell.n1 {
-  color: blue;
+  color: var(--oneMine);
 }
 .cell.n2 {
-  color: green;
+  color: var(--twoMines);
 }
 .cell.n3 {
-  color: red;
+  color: var(--threeMines);
 }
 .cell.n4 {
-  color: darkblue;
+  color: var(--fourMines);
 }
 .cell.n5 {
-  color: darkred;
+  color: var(--fiveMines);
 }
 .cell.n6 {
-  color: lightblue;
+  color: var(--sixMines);
 }
 .cell.n7 {
-  color: black;
+  color: var(--sevenMines);
 }
 .cell.n8 {
-  color: gray;
+  color: var(--eightMines);
 }

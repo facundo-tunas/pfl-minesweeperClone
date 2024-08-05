@@ -7,6 +7,21 @@ export function updateHeaders() {
   )
     .toString()
     .padStart(3, "0");
+
+  // change divider color depending on game state
+  document.documentElement.style.setProperty("--board-divider", returnColor());
+  function returnColor() {
+    switch (gameOptions.gameState) {
+      case 1:
+        return "yellow";
+      case 2:
+        return "red";
+      case 3:
+        return "#06e206";
+      case 0:
+        return "#acf9ff";
+    }
+  }
 }
 
 export function initializeEventListeners() {
@@ -14,6 +29,8 @@ export function initializeEventListeners() {
 
   DOMelements.startButton.addEventListener("click", () => {
     gameOptions.flags = 0;
+    gameOptions.gameState = 0;
+    updateHeaders();
     generateGame(DOMelements.board);
   });
 

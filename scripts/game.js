@@ -112,8 +112,8 @@ function renderBoard(boardElement, board) {
       }
 
       div.addEventListener("mouseup", (e) => {
-        // only reveal cell for left mouse button
         if (e.button !== 0) return;
+        if (gameOptions.gameState > 1) return;
 
         // reveal only if number of mines is flagged
         calculateNeighbors(board);
@@ -127,6 +127,11 @@ function renderBoard(boardElement, board) {
           return;
         }
 
+        // change divider color
+        if (gameOptions.gameState !== 1) {
+          gameOptions.gameState = 1;
+          updateHeaders();
+        }
         revealCell(board, row, col, div);
         checkWin(board);
         isMouseDown = false;
@@ -140,6 +145,7 @@ function renderBoard(boardElement, board) {
 
       div.addEventListener("mousedown", (e) => {
         if (e.button !== 0) return;
+        if (gameOptions.gameState > 1) return;
 
         div.classList.add("pressed");
         isMouseDown = true;
@@ -157,6 +163,7 @@ function renderBoard(boardElement, board) {
 
       div.addEventListener("mousedown", (e) => {
         if (e.button !== 2) return;
+        if (gameOptions.gameState > 1) return;
 
         e.preventDefault();
         flagCell(board, row, col, div);
@@ -228,12 +235,10 @@ function flagCell(board, row, col, cellElement) {
     board[row][col].flagged = false;
     cellElement.classList.remove("flagged");
     gameOptions.flags--;
-
   } else {
     board[row][col].flagged = true;
     cellElement.classList.add("flagged");
     gameOptions.flags++;
-
   }
 }
 
@@ -262,6 +267,8 @@ function revealAllMines(board) {
       }
     }
   }
+  gameOptions.gameState = 2;
+  updateHeaders();
 }
 
 function flagAllMines(board) {
@@ -275,4 +282,6 @@ function flagAllMines(board) {
       }
     }
   }
+  gameOptions.gameState = 3;
+  updateHeaders();
 }
