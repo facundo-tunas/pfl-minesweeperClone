@@ -1,5 +1,6 @@
 import { gameOptions, DOMelements } from "./config.js";
 import { generateGame, updateBoardSize } from "./game.js";
+import { endTimer } from "./timer.js";
 
 export function updateHeaders() {
   DOMelements.minesDisplay.textContent = (
@@ -30,6 +31,8 @@ export function initializeEventListeners() {
   DOMelements.startButton.addEventListener("click", () => {
     gameOptions.flags = 0;
     gameOptions.gameState = 0;
+    DOMelements.timerDisplay.textContent = "000";
+    endTimer();
     updateHeaders();
     generateGame(DOMelements.board);
   });

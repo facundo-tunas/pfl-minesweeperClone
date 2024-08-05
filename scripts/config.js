@@ -4,6 +4,7 @@ export const gameOptions = {
   mineCount: 40,
   flags: 0,
   gameState: 0 /* 0: off, 1: started, 2: lost, 3: won */,
+  timer: null,
 };
 
 export const DOMelements = {

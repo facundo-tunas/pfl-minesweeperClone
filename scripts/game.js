@@ -1,7 +1,7 @@
 import { DOMelements, gameOptions } from "./config.js";
 import { updateHeaders } from "./dom.js";
-
-let isMouseDown = false;
+import { endTimer, startTimer } from "./timer.js";
+import { renderBoard } from "./generate.js";
 
 export function updateBoardSize() {
   document.documentElement.style.setProperty(
@@ -53,7 +53,7 @@ function placeMines(board) {
   }
 }
 
-function calculateNeighbors(board) {
+export function calculateNeighbors(board) {
   const directions = [
     [-1, -1],
     [-1, 0],
@@ -94,93 +94,7 @@ function calculateNeighbors(board) {
   }
 }
 
-function renderBoard(boardElement, board) {
-  let start = true;
-
-  for (let row = 0; row < gameOptions.height; row++) {
-    for (let col = 0; col < gameOptions.width; col++) {
-      const div = document.createElement("div");
-      div.classList.add("cell");
-      div.dataset.row = row;
-      div.dataset.col = col;
-
-      // mark safe spot to start game
-      const cell = board[row][col];
-      if (start && !cell.neighborMines && !cell.mine) {
-        div.innerText = "❎";
-        start = false;
-      }
-
-      div.addEventListener("mouseup", (e) => {
-        if (e.button !== 0) return;
-        if (gameOptions.gameState > 1) return;
-
-        // reveal only if number of mines is flagged
-        calculateNeighbors(board);
-        if (
-          div.classList.contains("revealed") &&
-          board[row][col].neightborFlags == board[row][col].neighborMines
-        ) {
-          revealNeighbors(board, row, col);
-          isMouseDown = false;
-
-          return;
-        }
-
-        // change divider color
-        if (gameOptions.gameState !== 1) {
-          gameOptions.gameState = 1;
-          updateHeaders();
-        }
-        revealCell(board, row, col, div);
-        checkWin(board);
-        isMouseDown = false;
-      });
-
-      /* this one is so it recognizes if you stop clicking
-       outside from the board */
-      document.addEventListener("mouseup", () => {
-        isMouseDown = false;
-      });
-
-      div.addEventListener("mousedown", (e) => {
-        if (e.button !== 0) return;
-        if (gameOptions.gameState > 1) return;
-
-        div.classList.add("pressed");
-        isMouseDown = true;
-      });
-
-      div.addEventListener("mouseleave", () => {
-        div.classList.remove("pressed");
-      });
-
-      div.addEventListener("mouseenter", () => {
-        if (isMouseDown) {
-          div.classList.add("pressed");
-        }
-      });
-
-      div.addEventListener("mousedown", (e) => {
-        if (e.button !== 2) return;
-        if (gameOptions.gameState > 1) return;
-
-        e.preventDefault();
-        flagCell(board, row, col, div);
-        updateHeaders();
-      });
-
-      // this is so you cant accidentally right click in the gaps
-      DOMelements.board.addEventListener("contextmenu", (e) => {
-        e.preventDefault();
-      });
-
-      boardElement.appendChild(div);
-    }
-  }
-}
-
-function revealCell(board, row, col, cellElement) {
+export function revealCell(board, row, col, cellElement) {
   if (board[row][col].revealed || board[row][col].flagged) return;
   board[row][col].revealed = true;
 
@@ -228,7 +142,7 @@ function revealNeighbors(board, row, col) {
   }
 }
 
-function flagCell(board, row, col, cellElement) {
+export function flagCell(board, row, col, cellElement) {
   if (board[row][col].revealed) return;
 
   if (board[row][col].flagged) {
@@ -242,7 +156,7 @@ function flagCell(board, row, col, cellElement) {
   }
 }
 
-function checkWin(board) {
+export function checkWin(board) {
   for (let row = 0; row < gameOptions.height; row++) {
     for (let col = 0; col < gameOptions.width; col++) {
       if (!board[row][col].mine && !board[row][col].revealed) {
@@ -251,7 +165,9 @@ function checkWin(board) {
     }
   }
   gameOptions.flags = gameOptions.mineCount;
+  gameOptions.gameState = 3;
   updateHeaders();
+  endTimer();
   flagAllMines(board);
   return true;
 }
@@ -268,6 +184,7 @@ function revealAllMines(board) {
     }
   }
   gameOptions.gameState = 2;
+  endTimer();
   updateHeaders();
 }
 
@@ -282,6 +199,4 @@ function flagAllMines(board) {
       }
     }
   }
-  gameOptions.gameState = 3;
-  updateHeaders();
 }
