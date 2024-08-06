@@ -2,6 +2,11 @@ header {
   background-color: var(--header-bg);
   width: 100%;
   padding: 5px;
+
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #fff;
 }
 
 header button {
@@ -17,4 +22,8 @@ header button {
 }
 header button:hover {
   border-color: white;
+}
+
+.timer-header {
+  padding: 0.2rem 1rem;
 }

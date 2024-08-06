@@ -1,5 +1,5 @@
 import { gameOptions, DOMelements } from "./config.js";
-import { generateGame, setDifficulty } from "./game.js";
+import { generateGame, setDifficulty, start } from "./game.js";
 import { endTimer } from "./timer.js";
 
 export function updateHeaders() {
@@ -41,32 +41,10 @@ export function initializeEventListeners() {
     option.addEventListener("click", () => {
       setDifficulty(option.dataset.difficulty);
       DOMelements.settingsModal.style.display = "none";
-
-      endTimer();
-      updateHeaders();
-      generateGame(DOMelements.board);
     });
   });
 
-  DOMelements.startButton.addEventListener("click", () => {
-    gameOptions.flags = 0;
-    gameOptions.gameState = 0;
-    DOMelements.timerDisplay.textContent = "000";
-    endTimer();
-    updateHeaders();
-    generateGame(DOMelements.board);
-  });
-}
-
-function validateMineCount() {
-  const maxMines = gameOptions.width * gameOptions.height - 2;
-
-  if (gameOptions.mineCount > maxMines) {
-    gameOptions.mineCount = maxMines;
-    alert(
-      `Mine count adjusted to ${maxMines} to ensure there are fewer mines than cells.`
-    );
-  }
+  DOMelements.startButton.addEventListener("click", start);
 }
 
 export function unpressCells() {

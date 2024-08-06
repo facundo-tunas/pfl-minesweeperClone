@@ -6,7 +6,7 @@ import {
   checkWin,
   flagCell,
 } from "./game.js";
-import { startTimer, endTimer } from "./timer.js";
+import { startTimer } from "./timer.js";
 import { pressNeighbours, unpressCells, updateHeaders } from "./dom.js";
 
 let counter = 0;
@@ -141,8 +141,6 @@ function keyStrokesListener(e) {
     gameOptions.board[hoveredRow][hoveredCol].neightborFlags ===
       gameOptions.board[hoveredRow][hoveredCol].neighborMines
   ) {
-    console.log("XD");
-
     revealNeighbors(gameOptions.board, hoveredRow, hoveredCol);
     checkWin(gameOptions.board);
   } else if (!hoveredCell.classList.contains("revealed")) {

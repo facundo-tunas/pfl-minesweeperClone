@@ -51,6 +51,16 @@ export function setDifficulty(level) {
   console.log(
     `Difficulty set to ${level}: ${gameOptions.width}x${gameOptions.height}, ${gameOptions.mineCount} mines`
   );
+  start()
+}
+
+export function start() {
+  gameOptions.flags = 0;
+  gameOptions.gameState = 0;
+  DOMelements.timerDisplay.textContent = "000";
+  endTimer();
+  updateHeaders();
+  generateGame(DOMelements.board);
 }
 
 function generateBoard() {
