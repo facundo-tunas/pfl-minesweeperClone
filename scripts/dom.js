@@ -45,6 +45,23 @@ export function initializeEventListeners() {
   });
 
   DOMelements.startButton.addEventListener("click", start);
+
+  DOMelements.zoomButton.addEventListener("click", () => {
+    zoom(0.1);
+  });
+  DOMelements.zoomOutButton.addEventListener("click", () => {
+    zoom(-0.1);
+  });
+
+  function zoom(value) {
+    gameOptions.zoom += value;
+    console.log("zoomed in to" + " " + gameOptions.zoom);
+
+    document.documentElement.style.setProperty(
+      "--board-zoom",
+      gameOptions.zoom
+    );
+  }
 }
 
 export function unpressCells() {

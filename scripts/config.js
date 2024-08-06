@@ -6,6 +6,7 @@ export const gameOptions = {
   gameState: 0 /* 0: off, 1: started, 2: lost, 3: won */,
   timer: null,
   board: null,
+  zoom: 1,
 };
 
 export const DOMelements = {
@@ -17,4 +18,6 @@ export const DOMelements = {
   settingsModal: document.querySelector(".settings-modal"),
   closeSettingsButton: document.querySelector(".close-settings"),
   settingsButton: document.querySelector(".open-settings"),
+  zoomButton: document.getElementById("zoom-in"),
+  zoomOutButton: document.getElementById("zoom-out"),
 };

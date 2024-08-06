@@ -26,3 +26,31 @@ body {
   user-select: none;
 }
 
+.settings-container {
+  border-radius: 5px;
+  padding: 1rem;
+  background-color: var(--board-bg);
+
+  margin-bottom: 1rem;
+
+  width: fit-content;
+
+  display: flex;
+  gap: 0.5rem;
+}
+
+.settings-container button {
+  width: 50px;
+  height: 50px;
+
+  background-color: black;
+  border: 2px solid transparent;
+  border-radius: 5px;
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+.settings-container button:hover {
+  border-color: white;
+  font-size: 1.5em;
+}

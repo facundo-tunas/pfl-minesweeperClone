@@ -1,9 +1,10 @@
 :root {
-  --cell-size: 32px;
+  --cell-size: calc(32px * var(--board-zoom));
   --board-width: 16;
   --board-height: 16;
-  --board-divider: #acf9ff; /* changes depending on game state */
+  --board-zoom: 1;
 
+  --board-divider: #acf9ff; /* changes depending on game state */
   --page-bg: #ececec;
   --board-bg: #303030;
   --header-bg: #303030;

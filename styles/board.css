@@ -4,11 +4,12 @@
   grid-template-columns: repeat(var(--board-width), var(--cell-size));
   grid-template-rows: repeat(var(--board-height), var(--cell-size));
   max-width: calc(var(--cell-size) * var(--board-width) + 2rem);
-  max-height: calc(var(--cell-size) * var(--board-height) + 2rem);
+  max-height: calc((var(--cell-size) * var(--board-height) + 2rem));
 
   padding: 1rem;
   background-color: var(--board-bg);
   border-radius: 0px 0px 5px 5px;
+
 }
 
 /* displays */
