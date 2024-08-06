@@ -7,6 +7,8 @@ export const gameOptions = {
   timer: null,
   board: null,
   zoom: 1,
+  mouseDown: false,
+  pressedNeighbours: false,
 };
 
 export const DOMelements = {

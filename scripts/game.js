@@ -73,7 +73,7 @@ function generateBoard() {
         neighborMines: 0,
         revealed: false,
         flagged: false,
-        neightborFlags: null,
+        neighborFlags: null,
       });
     }
     board.push(row);
@@ -129,7 +129,7 @@ export function calculateNeighbors(board) {
         }
       }
       board[row][col].neighborMines = mineCount;
-      board[row][col].neightborFlags = flagCount;
+      board[row][col].neighborFlags = flagCount;
     }
   }
 }
