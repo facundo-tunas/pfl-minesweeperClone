@@ -5,6 +5,7 @@ export const gameOptions = {
   flags: 0,
   gameState: 0 /* 0: off, 1: started, 2: lost, 3: won */,
   timer: null,
+  board: null,
 };
 
 export const DOMelements = {

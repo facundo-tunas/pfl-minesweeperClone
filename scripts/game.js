@@ -17,6 +17,7 @@ export function updateBoardSize() {
 export function generateGame(board) {
   board.innerHTML = "";
   const gameBoard = generateBoard();
+  gameOptions.board = gameBoard;
 
   updateHeaders();
   placeMines(gameBoard);

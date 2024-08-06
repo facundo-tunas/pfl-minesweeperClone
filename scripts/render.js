@@ -9,33 +9,12 @@ import {
 import { startTimer, endTimer } from "./timer.js";
 import { pressNeighbours, unpressCells, updateHeaders } from "./dom.js";
 
+let counter = 0;
+
 export function renderBoard(boardElement, board) {
   let start = true;
   let isMouseDown = false;
   let pressedNeighbours = false;
-
-  document.addEventListener("keydown", (e) => {
-    if (gameOptions.gameState > 1) return;
-
-    const hoveredCell = document.querySelector(".hovered");
-    if ((e.key !== "g" && e.key !== " ") || !hoveredCell) return;
-    
-    e.preventDefault();
-    const hoveredCol = +hoveredCell.dataset.col;
-    const hoveredRow = +hoveredCell.dataset.row;
-    calculateNeighbors(board);
-    if (
-      hoveredCell.classList.contains("revealed") &&
-      board[hoveredRow][hoveredCol].neightborFlags ==
-        board[hoveredRow][hoveredCol].neighborMines
-    ) {
-      revealNeighbors(board, hoveredRow, hoveredCol);
-      return;
-    }
-
-    flagCell(board, hoveredRow, hoveredCol, hoveredCell);
-    updateHeaders();
-  });
 
   for (let row = 0; row < gameOptions.height; row++) {
     for (let col = 0; col < gameOptions.width; col++) {
@@ -76,16 +55,6 @@ export function renderBoard(boardElement, board) {
         revealCell(board, row, col, div);
         checkWin(board);
         isMouseDown = false;
-      });
-
-      /* this one is so it recognizes if you stop clicking
-       outside from the board */
-      document.addEventListener("mouseup", () => {
-        isMouseDown = false;
-        if (pressedNeighbours) {
-          unpressCells();
-          pressedNeighbours = false;
-        }
       });
 
       div.addEventListener("mousedown", (e) => {
@@ -144,5 +113,40 @@ export function renderBoard(boardElement, board) {
 
       boardElement.appendChild(div);
     }
+  }
+  /* this one is so it recognizes if you stop clicking outside from the board */
+  document.addEventListener("mouseup", () => {
+    isMouseDown = false;
+    if (pressedNeighbours) {
+      unpressCells();
+      pressedNeighbours = false;
+    }
+  });
+
+  document.addEventListener("keydown", keyStrokesListener);
+}
+
+function keyStrokesListener(e) {
+  e.preventDefault();
+  if (gameOptions.gameState > 1) return;
+
+  const hoveredCell = document.querySelector(".hovered");
+  if ((e.key !== "g" && e.key !== " ") || !hoveredCell) return;
+
+  const hoveredCol = +hoveredCell.dataset.col;
+  const hoveredRow = +hoveredCell.dataset.row;
+  calculateNeighbors(gameOptions.board);
+  if (
+    hoveredCell.classList.contains("revealed") &&
+    gameOptions.board[hoveredRow][hoveredCol].neightborFlags ===
+      gameOptions.board[hoveredRow][hoveredCol].neighborMines
+  ) {
+    console.log("XD");
+
+    revealNeighbors(gameOptions.board, hoveredRow, hoveredCol);
+    checkWin(gameOptions.board);
+  } else if (!hoveredCell.classList.contains("revealed")) {
+    flagCell(gameOptions.board, hoveredRow, hoveredCol, hoveredCell);
+    updateHeaders();
   }
 }
