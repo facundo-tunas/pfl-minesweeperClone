@@ -53,16 +53,31 @@ export function initializeEventListeners() {
   }
 
   DOMelements.settingsButton.addEventListener("click", () => {
-    DOMelements.settingsModal.style.display = "block";
+    DOMelements.settingsModal.style.display = "flex";
+    DOMelements.settingsModal.style.animation = "appear 0.3s linear forwards";
+
+    setTimeout(() => {
+      DOMelements.settingsModal.style.animation = "none"
+    }, 600);
   });
   DOMelements.statisticsButton.addEventListener("click", () => {
-    DOMelements.statisticsModal.style.display = "block";
+    DOMelements.statisticsModal.style.display = "flex";
+    DOMelements.statisticsModal.style.animation = "appear 0.3s linear forwards";
+
+    setTimeout(() => {
+      DOMelements.statisticsModal.style.animation = "none"
+    }, 300);
   });
 
-  (DOMelements.closeButton).forEach((item) =>
+  DOMelements.closeButton.forEach((item) =>
     item.addEventListener("click", () => {
-      DOMelements.settingsModal.style.display = "none";
-      DOMelements.statisticsModal.style.display = "none";
+      DOMelements.settingsModal.style.animation = "disappear 0.3s linear forwards";
+      DOMelements.statisticsModal.style.animation = "disappear 0.3s linear forwards";
+
+      setTimeout(() => {
+        DOMelements.settingsModal.style.display = "none";
+        DOMelements.statisticsModal.style.display = "none";
+      }, 300);
     })
   );
   DOMelements.startButton.addEventListener("click", start);

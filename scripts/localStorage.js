@@ -45,7 +45,7 @@ function setElement(key) {
     const miliseconds = Math.floor(storage[key] % 1000);
 
     let result;
-    if (storage[key] == Infinity) result = "NO TIME";
+    if (storage[key] == Infinity) result = "";
     else result = seconds + "." + miliseconds;
     
     document.getElementById(key).innerHTML = result;
