@@ -9,6 +9,7 @@ export const gameOptions = {
   zoom: 1,
   mouseDown: false,
   pressedNeighbours: false,
+  difficulty: "intermediate",
 };
 
 export const DOMelements = {
@@ -17,9 +18,28 @@ export const DOMelements = {
   minesDisplay: document.querySelector(".minecount"),
   startButton: document.querySelector(".start-game"),
   board: document.querySelector(".board"),
+
   settingsModal: document.querySelector(".settings-modal"),
-  closeSettingsButton: document.querySelector(".close-settings"),
   settingsButton: document.querySelector(".open-settings"),
+  statisticsModal: document.querySelector('.statistics-modal'),
+  statisticsButton: document.querySelector(".open-statistics"),
+
+  closeButton: document.querySelectorAll(".close-modal"),
+
   zoomButton: document.getElementById("zoom-in"),
   zoomOutButton: document.getElementById("zoom-out"),
+};
+
+export const storage = {
+  beginnerGames: 0,
+  beginnerWins: 0,
+  beginnerBest: Infinity,
+
+  intermediateGames: 0,
+  intermediateWins: 0,
+  intermediateBest: Infinity,
+
+  advancedGames: 0,
+  advancedWins: 0,
+  advancedBest: Infinity,
 };

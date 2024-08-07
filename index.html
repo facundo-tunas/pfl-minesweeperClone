@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="./styles/variables.css" />
     <link rel="stylesheet" href="./styles/header.css" />
     <link rel="stylesheet" href="./styles/styles.css" />
-    <link rel="stylesheet" href="./styles/settings-modal.css" />
+    <link rel="stylesheet" href="./styles/modals.css" />
     <link rel="stylesheet" href="./styles/board.css" />
     <link rel="stylesheet" href="./styles/cells.css" />
 
@@ -25,10 +25,11 @@
   <body>
     <header>
       <button class="open-settings">Settings</button>
+      <button class="open-statistics">Settings</button>
       <p class="timer-header">Time: 00:00</p>
     </header>
 
-    <div class="settings-modal">
+    <div class="settings-modal modal">
       <div class="container">
         <p class="options-title">Difficulty</p>
         <ul>
@@ -36,7 +37,31 @@
           <li data-difficulty="intermediate">Intermediate</li>
           <li data-difficulty="advanced">Advanced</li>
         </ul>
-        <button class="close-settings">Close</button>
+        <button class="close-modal">Close</button>
+      </div>
+    </div>
+    <div class="statistics-modal modal">
+      <div class="container">
+        <p class="options-title">Difficulty</p>
+        <ul>
+          <p class="subtitle">Beginner</p>
+          <li id="beginnerGames"></li>
+          <li id="beginnerWins"></li>
+          <li id="beginnerBest"></li>
+        </ul>
+        <ul>
+          <p class="subtitle">Intermediate</p>
+          <li id="intermediateGames"></li>
+          <li id="intermediateWins"></li>
+          <li id="intermediateBest"></li>
+        </ul>
+        <ul>
+          <p class="subtitle">Advanced</p>
+          <li id="advancedGames"></li>
+          <li id="advancedWins"></li>
+          <li id="advancedBest"></li>
+        </ul>
+        <button class="close-modal">Close</button>
       </div>
     </div>
     <div class="game-container">

@@ -1,4 +1,4 @@
-.settings-modal {
+.modal {
   display: none;
   position: fixed;
   z-index: 1;
@@ -11,7 +11,7 @@
   background-color: rgba(0,0,0,0.4);
 }
 
-.settings-modal .container {
+.modal .container {
   background-color: #fefefe;
   margin: 15% auto;
   padding: 20px;
@@ -21,28 +21,28 @@
   text-align: center;
 }
 
-.settings-modal .options-title {
+.modal .options-title {
   font-size: 24px;
   margin-bottom: 10px;
 }
 
-.settings-modal ul {
+.modal ul {
   list-style-type: none;
   padding: 0;
 }
 
-.settings-modal li {
+.modal li {
   padding: 10px;
   margin: 5px 0;
   background-color: #ddd;
   cursor: pointer;
 }
 
-.settings-modal li:hover {
+.modal li:hover {
   background-color: #ccc;
 }
 
-.settings-modal .close-settings {
+.modal .close-modal {
   margin-top: 20px;
   padding: 10px 20px;
   background-color: #f44336;
@@ -51,6 +51,6 @@
   cursor: pointer;
 }
 
-.settings-modal .close-settings:hover {
+.modal .close-modal:hover {
   background-color: #e53935;
 }

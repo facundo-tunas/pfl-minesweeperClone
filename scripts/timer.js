@@ -13,14 +13,14 @@ export function startTimer() {
     const formattedSeconds = seconds.toString().padStart(2, "0");
 
     DOMelements.timerDisplay.innerText = `${formattedSeconds.padStart(3, "0")}`;
+    gameOptions.timer = elapsedTime;
 
     DOMelements.timerHeader.innerText = formattedHours
       ? `Time: ${formattedHours}:${formattedMinutes}:${formattedSeconds}`
       : `Time: ${formattedMinutes}:${formattedSeconds}`;
-  }, 1000);
+  }, 10);
 }
 
 export function endTimer() {
   clearInterval(gameOptions.timerDisplay);
-  gameOptions.timerDisplay = null;
 }

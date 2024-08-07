@@ -9,10 +9,12 @@ import {
   setDifficulty,
   start,
 } from "./game.js";
+import { loadFromLocalStorage } from "./localStorage.js";
 import { startTimer } from "./timer.js";
 
 export function initializeEventListeners() {
   generateGame(DOMelements.board);
+  loadFromLocalStorage();
 
   function hoveredCell() {
     const hoveredCell = document.querySelector(".hovered");
@@ -53,9 +55,16 @@ export function initializeEventListeners() {
   DOMelements.settingsButton.addEventListener("click", () => {
     DOMelements.settingsModal.style.display = "block";
   });
-  DOMelements.closeSettingsButton.addEventListener("click", () => {
-    DOMelements.settingsModal.style.display = "none";
+  DOMelements.statisticsButton.addEventListener("click", () => {
+    DOMelements.statisticsModal.style.display = "block";
   });
+
+  (DOMelements.closeButton).forEach((item) =>
+    item.addEventListener("click", () => {
+      DOMelements.settingsModal.style.display = "none";
+      DOMelements.statisticsModal.style.display = "none";
+    })
+  );
   DOMelements.startButton.addEventListener("click", start);
 
   const difficultyOptions = document.querySelectorAll(".settings-modal li");
@@ -132,7 +141,6 @@ export function initializeEventListeners() {
       updateHeaders();
     }
     revealCell(gameOptions.board, row, col, cell);
-    checkWin(gameOptions.board);
     gameOptions.mouseDown = false;
   });
   /* this one is so it recognizes if you stop clicking outside from the board */

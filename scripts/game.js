@@ -2,6 +2,7 @@ import { DOMelements, gameOptions } from "./config.js";
 import { updateHeaders } from "./dom.js";
 import { endTimer, startTimer } from "./timer.js";
 import { renderBoard } from "./render.js";
+import { updateGameStats } from "./localStorage.js";
 
 export function updateBoardSize() {
   document.documentElement.style.setProperty(
@@ -31,27 +32,35 @@ export function setDifficulty(level) {
       gameOptions.width = 8;
       gameOptions.height = 8;
       gameOptions.mineCount = 10;
+
+      gameOptions.difficulty = "beginner";
       break;
     case "intermediate":
       gameOptions.width = 16;
       gameOptions.height = 16;
       gameOptions.mineCount = 40;
+
+      gameOptions.difficulty = "intermediate";
       break;
     case "advanced":
       gameOptions.width = 30;
       gameOptions.height = 16;
       gameOptions.mineCount = 99;
+
+      gameOptions.difficulty = "advanced";
       break;
     default:
       gameOptions.width = 16;
       gameOptions.height = 16;
       gameOptions.mineCount = 40;
+
+      gameOptions.difficulty = "intermediate";
   }
   updateBoardSize();
   console.log(
     `Difficulty set to ${level}: ${gameOptions.width}x${gameOptions.height}, ${gameOptions.mineCount} mines`
   );
-  start()
+  start();
 }
 
 export function start() {
@@ -150,6 +159,8 @@ export function revealCell(board, row, col, cellElement) {
     if (neighborMines === 0) {
       revealNeighbors(board, row, col);
     }
+
+    checkWin(gameOptions.board);
   }
 }
 
@@ -210,6 +221,8 @@ export function checkWin(board) {
   updateHeaders();
   endTimer();
   flagAllMines(board);
+
+  updateGameStats(true, gameOptions.timer);
   return true;
 }
 
@@ -227,6 +240,7 @@ function revealAllMines(board) {
   gameOptions.gameState = 2;
   endTimer();
   updateHeaders();
+  updateGameStats(false);
 }
 
 function flagAllMines(board) {
