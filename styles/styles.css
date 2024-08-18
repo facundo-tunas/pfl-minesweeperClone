@@ -10,6 +10,9 @@ body {
   grid-template-rows: min-content auto;
 
   background-color: var(--page-bg);
+
+  opacity: 0;
+  transition: 0.5s opacity;
 }
 
 .game-container {
@@ -24,6 +27,8 @@ body {
   padding: 2rem;
 
   user-select: none;
+
+  transform: scale(var(--board-zoomLevel));
 }
 
 .settings-container {

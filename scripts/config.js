@@ -6,7 +6,6 @@ export const gameOptions = {
   gameState: 0 /* 0: off, 1: started, 2: lost, 3: won */,
   timer: null,
   board: null,
-  zoom: 1,
   mouseDown: false,
   pressedNeighbours: false,
   difficulty: "intermediate",
@@ -21,10 +20,10 @@ export const DOMelements = {
 
   settingsModal: document.querySelector(".settings-modal"),
   settingsButton: document.querySelector(".open-settings"),
-  statisticsModal: document.querySelector('.statistics-modal'),
+  statisticsModal: document.querySelector(".statistics-modal"),
   statisticsButton: document.querySelector(".open-statistics"),
   helpModal: document.querySelector(".help-modal"),
-  helpButton: document.querySelector('.open-help'),
+  helpButton: document.querySelector(".open-help"),
 
   closeButton: document.querySelectorAll(".close-modal"),
 
@@ -44,4 +43,6 @@ export const storage = {
   advancedGames: 0,
   advancedWins: 0,
   advancedBest: Infinity,
+
+  zoomLevel: 1,
 };

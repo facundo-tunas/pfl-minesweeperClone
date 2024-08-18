@@ -1,6 +1,14 @@
-import { DOMelements, gameOptions } from "./config.js";
+import { DOMelements, storage } from "./config.js";
+import { updateZoom, loadZoomLevel } from "./localStorage.js";
 
 document.addEventListener("DOMContentLoaded", () => {
+  storage.zoomLevel = loadZoomLevel();
+
+  document.documentElement.style.setProperty(
+    "--board-zoomLevel",
+    storage.zoomLevel
+  );
+
   DOMelements.zoomButton.addEventListener("click", () => {
     zoom(0.1);
   });
@@ -9,12 +17,18 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   function zoom(value) {
-    gameOptions.zoom += value;
-    console.log("zoomed in to" + " " + gameOptions.zoom);
+    storage.zoomLevel += value;
+    console.log("zoomed in to " + storage.zoomLevel);
 
-    document.documentElement.style.setProperty(
-      "--board-zoom",
-      gameOptions.zoom
-    );
+    if (storage.zoomLevel > 0) {
+      document.documentElement.style.setProperty(
+        "--board-zoomLevel",
+        storage.zoomLevel
+      );
+    }
+
+    updateZoom(storage.zoomLevel);
   }
+
+  zoom(0);
 });

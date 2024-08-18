@@ -23,12 +23,22 @@ export function updateGameStats(result, time) {
   loadFromLocalStorage();
 }
 
+export function loadZoomLevel() {
+  const savedZoom = localStorage.getItem("zoomLevel");
+  return savedZoom ? parseFloat(savedZoom) : 1;
+}
+
+export function updateZoom(value) {
+  storage.zoomLevel = value;
+  saveToStorage();
+}
+
 export function loadFromLocalStorage() {
   const keys = Object.keys(storage);
   keys.forEach((key) => {
+    console.log(key);
     const value = localStorage.getItem(key);
     if (value !== null) {
-      // Check if the value should be a number
       if (key.includes("Games") || key.includes("Wins")) {
         storage[key] = parseInt(value, 10);
       } else {
@@ -47,9 +57,9 @@ function setElement(key) {
     let result;
     if (storage[key] == Infinity) result = "";
     else result = seconds + "." + miliseconds;
-    
+
     document.getElementById(key).innerHTML = result;
-  } else {
+  } else if (document.getElementById(key)) {
     document.getElementById(key).innerHTML = storage[key];
   }
 }
