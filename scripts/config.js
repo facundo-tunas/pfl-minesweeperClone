@@ -23,6 +23,8 @@ export const DOMelements = {
   settingsButton: document.querySelector(".open-settings"),
   statisticsModal: document.querySelector('.statistics-modal'),
   statisticsButton: document.querySelector(".open-statistics"),
+  helpModal: document.querySelector(".help-modal"),
+  helpButton: document.querySelector('.open-help'),
 
   closeButton: document.querySelectorAll(".close-modal"),
 

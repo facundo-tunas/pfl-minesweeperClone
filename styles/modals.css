@@ -126,3 +126,34 @@
 .statistics-modal .close-modal {
   align-self: center;
 }
+.open-help {
+  margin-left: auto;
+}
+
+.div {
+  display: inline-block;
+
+  width: 90%;
+  height: 1px;
+
+  border: 1px solid rgb(70, 70, 70);
+  margin: 1rem 0;
+}
+
+.help-modal ul {
+  padding: 1rem;
+  background-color: #feffc8;
+}
+.help-modal ul:hover {
+  background-color: #fffd96;
+}
+
+.help-modal li {
+  display: flex;
+  justify-content: space-between;
+  line-height: 1.5;
+}
+
+.help-modal li p:first-of-type {
+  font-weight: 500;
+}

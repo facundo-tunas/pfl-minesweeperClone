@@ -60,6 +60,7 @@ export function initializeEventListeners() {
       DOMelements.settingsModal.style.animation = "none"
     }, 600);
   });
+
   DOMelements.statisticsButton.addEventListener("click", () => {
     DOMelements.statisticsModal.style.display = "flex";
     DOMelements.statisticsModal.style.animation = "appear 0.3s linear forwards";
@@ -69,14 +70,25 @@ export function initializeEventListeners() {
     }, 300);
   });
 
+  DOMelements.helpButton.addEventListener("click", () => {
+    DOMelements.helpModal.style.display = "flex";
+    DOMelements.helpModal.style.animation = "appear 0.3s linear forwards";
+
+    setTimeout(() => {
+      DOMelements.helpModal.style.animation = "none"
+    }, 600);
+  });
+
   DOMelements.closeButton.forEach((item) =>
     item.addEventListener("click", () => {
       DOMelements.settingsModal.style.animation = "disappear 0.3s linear forwards";
       DOMelements.statisticsModal.style.animation = "disappear 0.3s linear forwards";
-
+      DOMelements.helpModal.style.animation = "disappear 0.3s linear forwards";
+      
       setTimeout(() => {
         DOMelements.settingsModal.style.display = "none";
         DOMelements.statisticsModal.style.display = "none";
+        DOMelements.helpModal.style.display = "none";
       }, 300);
     })
   );

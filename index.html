@@ -28,6 +28,8 @@
       <button class="open-settings">Settings</button>
       <button class="open-statistics">Statistics</button>
       <p class="timer-header">Time: 00:00</p>
+
+      <button class="open-help">Help</button>
     </header>
 
     <div class="settings-modal modal">
@@ -35,7 +37,9 @@
         <p class="options-title">Difficulty</p>
         <ul>
           <li class="beginner" data-difficulty="beginner">Beginner</li>
-          <li class="intermediate" data-difficulty="intermediate">Intermediate</li>
+          <li class="intermediate" data-difficulty="intermediate">
+            Intermediate
+          </li>
           <li class="advanced" data-difficulty="advanced">Advanced</li>
         </ul>
         <button class="close-modal">Close</button>
@@ -89,6 +93,49 @@
             <li id="advancedBest"></li>
           </div>
         </ul>
+        <button class="close-modal">Close</button>
+      </div>
+    </div>
+    <div class="help-modal modal">
+      <div class="container">
+        <p class="options-title">Help</p>
+        <ul>
+          <li>
+            <p>Left-Click on Empty Cell:</p>
+            <p>Reveal Cell</p>
+          </li>
+          <li>
+            <p>Right-Click on Empty Cell:</p>
+            <p>Flag/Unflag Cell</p>
+          </li>
+          <li>
+            <p>Left-Click on Revealed Cell:</p>
+            <p>Chording</p>
+          </li>
+
+          <span class="div"></span>
+
+          <li>
+            <p>"G" on Empty Cell:</p>
+            <p>Flag/Unflag Cell</p>
+          </li>
+          <li>
+            <p>"G" on Revealed Cell:</p>
+            <p>Chording</p>
+          </li>
+
+          <span class="div"></span>
+
+          <li>
+            <p>"Space" on Empty Cell:</p>
+            <p>Flag/Unflag Cell</p>
+          </li>
+          <li>
+            <p>"Space" on Revealed Cell:</p>
+            <p>Chording</p>
+          </li>
+        </ul>
+
         <button class="close-modal">Close</button>
       </div>
     </div>
