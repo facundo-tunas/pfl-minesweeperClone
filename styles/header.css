@@ -1,12 +1,17 @@
 header {
   background-color: var(--header-bg);
   width: 100%;
+  max-width: 1000px;
   padding: 5px;
 
   display: flex;
   align-items: center;
   gap: 0.5rem;
   color: #fff;
+
+  border-radius: 0 0 5px 5px;
+
+  justify-self: center;
 }
 
 header button {
@@ -27,4 +32,3 @@ header button:hover {
 .timer-header {
   padding: 0.2rem 1rem;
 }
-

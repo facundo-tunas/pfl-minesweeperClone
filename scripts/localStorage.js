@@ -36,7 +36,6 @@ export function updateZoom(value) {
 export function loadFromLocalStorage() {
   const keys = Object.keys(storage);
   keys.forEach((key) => {
-    console.log(key);
     const value = localStorage.getItem(key);
     if (value !== null) {
       if (key.includes("Games") || key.includes("Wins")) {
