@@ -12,7 +12,10 @@ export function startTimer() {
     const formattedMinutes = minutes.toString().padStart(2, "0");
     const formattedSeconds = seconds.toString().padStart(2, "0");
 
-    DOMelements.timerDisplay.innerText = `${formattedSeconds.padStart(3, "0")}`;
+    const totalSeconds = Math.floor(elapsedTime / 1000);
+    DOMelements.timerDisplay.innerText = `${
+      totalSeconds > 999 ? 999 : totalSeconds.toString().padStart(3, "0")
+    }`;
     gameOptions.timer = elapsedTime;
 
     DOMelements.timerHeader.innerText = formattedHours
