@@ -1,6 +1,6 @@
 import { gameOptions, DOMelements } from "./config.js";
 import {
-  calculateNeighbors,
+  calculateNeighborFlags,
   checkWin,
   flagCell,
   generateGame,
@@ -37,7 +37,7 @@ export function initializeEventListeners() {
     e.preventDefault();
 
     // reveal only if number of mines is flagged
-    calculateNeighbors(gameOptions.board);
+    calculateNeighborFlags(gameOptions.board, row, col);
 
     if (
       cell.classList.contains("revealed") &&
@@ -57,7 +57,7 @@ export function initializeEventListeners() {
     DOMelements.settingsModal.style.animation = "appear 0.3s linear forwards";
 
     setTimeout(() => {
-      DOMelements.settingsModal.style.animation = "none"
+      DOMelements.settingsModal.style.animation = "none";
     }, 600);
   });
 
@@ -66,7 +66,7 @@ export function initializeEventListeners() {
     DOMelements.statisticsModal.style.animation = "appear 0.3s linear forwards";
 
     setTimeout(() => {
-      DOMelements.statisticsModal.style.animation = "none"
+      DOMelements.statisticsModal.style.animation = "none";
     }, 300);
   });
 
@@ -75,16 +75,18 @@ export function initializeEventListeners() {
     DOMelements.helpModal.style.animation = "appear 0.3s linear forwards";
 
     setTimeout(() => {
-      DOMelements.helpModal.style.animation = "none"
+      DOMelements.helpModal.style.animation = "none";
     }, 600);
   });
 
   DOMelements.closeButton.forEach((item) =>
     item.addEventListener("click", () => {
-      DOMelements.settingsModal.style.animation = "disappear 0.3s linear forwards";
-      DOMelements.statisticsModal.style.animation = "disappear 0.3s linear forwards";
+      DOMelements.settingsModal.style.animation =
+        "disappear 0.3s linear forwards";
+      DOMelements.statisticsModal.style.animation =
+        "disappear 0.3s linear forwards";
       DOMelements.helpModal.style.animation = "disappear 0.3s linear forwards";
-      
+
       setTimeout(() => {
         DOMelements.settingsModal.style.display = "none";
         DOMelements.statisticsModal.style.display = "none";
@@ -149,7 +151,7 @@ export function initializeEventListeners() {
     if (gameOptions.gameState > 1) return;
 
     // reveal only if number of mines is flagged
-    calculateNeighbors(gameOptions.board);
+    calculateNeighborFlags(gameOptions.board, row, col);
 
     if (
       cell.classList.contains("revealed") &&

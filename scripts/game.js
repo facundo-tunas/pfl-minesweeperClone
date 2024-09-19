@@ -22,7 +22,7 @@ export function generateGame(board) {
 
   updateHeaders();
   placeMines(gameBoard);
-  calculateNeighbors(gameBoard);
+  calculateMineNeighbors(gameBoard);
   renderBoard(board, gameBoard);
 }
 
@@ -102,7 +102,7 @@ function placeMines(board) {
   }
 }
 
-export function calculateNeighbors(board) {
+export function calculateMineNeighbors(board) {
   const directions = [
     [-1, -1],
     [-1, 0],
@@ -119,7 +119,6 @@ export function calculateNeighbors(board) {
       if (board[row][col].mine) continue;
 
       let mineCount = 0;
-      let flagCount = 0;
       for (const [dx, dy] of directions) {
         const newRow = row + dx;
         const newCol = col + dy;
@@ -132,15 +131,43 @@ export function calculateNeighbors(board) {
           if (board[newRow][newCol].mine) {
             mineCount++;
           }
-          if (board[newRow][newCol].flagged) {
-            flagCount++;
-          }
         }
       }
       board[row][col].neighborMines = mineCount;
-      board[row][col].neighborFlags = flagCount;
     }
   }
+}
+
+export function calculateNeighborFlags(board, row, col) {
+  const directions = [
+    [-1, -1],
+    [-1, 0],
+    [-1, 1],
+    [0, -1],
+    [0, 1],
+    [1, -1],
+    [1, 0],
+    [1, 1],
+  ];
+
+  let flagCount = 0;
+
+  for (const [dx, dy] of directions) {
+    const newRow = row + dx;
+    const newCol = col + dy;
+
+    if (
+      newRow >= 0 &&
+      newRow < gameOptions.height &&
+      newCol >= 0 &&
+      newCol < gameOptions.width
+    ) {
+      if (board[newRow][newCol].flagged) {
+        flagCount++;
+      }
+    }
+  }
+  board[row][col].neighborFlags = flagCount;
 }
 
 export function revealCell(board, row, col, cellElement) {
