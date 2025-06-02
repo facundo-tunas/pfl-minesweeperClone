@@ -45,4 +45,5 @@ export const storage = {
   advancedBest: Infinity,
 
   zoomLevel: 1,
+  theme: "dark",
 };

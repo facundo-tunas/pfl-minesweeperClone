@@ -32,7 +32,6 @@ body {
 }
 
 .settings-container {
-  border-radius: 5px;
   padding: 1rem;
   background-color: var(--board-bg);
 
@@ -50,7 +49,6 @@ body {
 
   background-color: black;
   border: 2px solid transparent;
-  border-radius: 5px;
 
   cursor: pointer;
   transition: 0.3s;
@@ -58,4 +56,22 @@ body {
 .settings-container button:hover {
   border-color: white;
   font-size: 1.5em;
+}
+
+#theme-toggle {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  padding: 0.6rem;
+  font-size: 1rem;
+  border: none;
+  background: linear-gradient(135deg, #444, #222);
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 999;
+}
+
+body {
+  transition: background-color 0.4s ease, color 0.4s ease;
 }

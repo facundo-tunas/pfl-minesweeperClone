@@ -22,3 +22,7 @@
   --sevenMines: black;
   --eightMines: gray;
 }
+
+:root.dark {
+  --page-bg: #000000;
+}

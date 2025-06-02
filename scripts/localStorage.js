@@ -1,6 +1,6 @@
 import { gameOptions, storage } from "./config.js";
 
-function saveToStorage() {
+export function saveToStorage() {
   const keys = Object.keys(storage);
   keys.forEach((key) => {
     const value = storage[key];

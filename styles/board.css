@@ -8,8 +8,6 @@
 
   padding: 1rem;
   background-color: var(--board-bg);
-  border-radius: 0px 0px 5px 5px;
-
 }
 
 /* displays */
@@ -19,7 +17,6 @@
   justify-content: space-between;
   align-items: center;
 
-  border-radius: 5px 5px 0 0;
   padding: 1rem;
   background-color: var(--board-bg);
 
@@ -44,7 +41,7 @@
   background-color: var(--display-bg);
   border: none;
   padding: 5px;
-  
+
   cursor: pointer;
 }
 .start-game:hover {
