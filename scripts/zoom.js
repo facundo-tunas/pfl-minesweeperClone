@@ -2,33 +2,34 @@ import { DOMelements, storage } from "./config.js";
 import { updateZoom, loadZoomLevel } from "./localStorage.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  storage.zoomLevel = loadZoomLevel();
+  const MIN_ZOOM = 0.85;
+  const ZOOM_STEP = 0.1;
 
-  document.documentElement.style.setProperty(
-    "--board-zoomLevel",
-    storage.zoomLevel
+  storage.zoomLevel = loadZoomLevel() || 1;
+
+  if (storage.zoomLevel >= MIN_ZOOM) {
+    setZoom(storage.zoomLevel);
+  }
+
+  DOMelements.zoomButton.addEventListener("click", () => changeZoom(ZOOM_STEP));
+  DOMelements.zoomOutButton.addEventListener("click", () =>
+    changeZoom(-ZOOM_STEP)
   );
 
-  DOMelements.zoomButton.addEventListener("click", () => {
-    zoom(0.1);
-  });
-  DOMelements.zoomOutButton.addEventListener("click", () => {
-    zoom(-0.1);
-  });
+  function changeZoom(delta) {
+    const newZoom = storage.zoomLevel + delta;
+    if (newZoom < MIN_ZOOM) return;
 
-  function zoom(value) {
-    storage.zoomLevel += value;
-    console.log("zoomed in to " + storage.zoomLevel);
+    storage.zoomLevel = newZoom;
+    console.log(`Zoom set to ${storage.zoomLevel}`);
 
-    if (storage.zoomLevel > 0) {
-      document.documentElement.style.setProperty(
-        "--board-zoomLevel",
-        storage.zoomLevel
-      );
-    }
-
+    setZoom(storage.zoomLevel);
     updateZoom(storage.zoomLevel);
   }
 
-  zoom(0);
+  function setZoom(zoomValue) {
+    document.documentElement.style.setProperty("--board-zoom", zoomValue);
+  }
+
+  changeZoom(0);
 });

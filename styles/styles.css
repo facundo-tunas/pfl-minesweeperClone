@@ -27,8 +27,6 @@ body {
   padding: 2rem;
 
   user-select: none;
-
-  transform: scale(var(--board-zoomLevel));
 }
 
 .settings-container {
@@ -59,7 +57,7 @@ body {
 }
 
 #theme-toggle {
-  position: absolute;
+  position: fixed;
   bottom: 1rem;
   right: 1rem;
   padding: 0.6rem;
